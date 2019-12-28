@@ -1,0 +1,76 @@
+REM Project: Calculo Quiniela
+REM Created: 08/01/2016 17:32:05
+REM
+REM ***** Main Source File *****
+REM
+
+rem inicilizar variables
+EQUIS = 0
+UNOS = 0
+DOSES = 0
+RESULTADO = 4
+DIM RESULTADO$(14)
+dim partidos$(14)
+
+rem Inicio programa
+gosub partidos
+gosub pronostico
+gosub mostrar
+wait key
+end
+
+
+
+
+pronostico:
+FOR X=1 TO 14
+cls
+set cursor 1,1
+print partidos$(x)
+set cursor 1,50
+INPUT "¿CUÁNTAS EQUIS? : ",EQUIS
+set cursor 1,100
+INPUT "¿CUÁNTOS UNOS? : ",UNOS
+set cursor 1,150
+INPUT "¿CUÁNTOS DOSES? : ",DOSES
+
+IF EQUIS > UNOS AND EQUIS > DOSES THEN RESULTADO = 0
+IF UNOS > EQUIS AND UNOS > DOSES THEN RESULTADO = 1
+IF DOSES > UNOS AND DOSES > EQUIS THEN RESULTADO = 2
+iF UNOS > DOSES AND UNOS = EQUIS THEN RESULTADO = 10
+IF UNOS > EQUIS AND UNOS = DOSES THEN RESULTADO = 12
+IF DOSES > EQUIS AND DOSES = UNOS THEN RESULTADO = 12
+IF DOSES > UNOS AND DOSES = EQUIS THEN RESULTADO = 20
+IF EQUIS > UNOS AND EQUIS = DOSES THEN RESULTADO = 20
+IF EQUIS > DOSES AND EQUIS = UNOS THEN RESULTADO = 10
+IF RESULTADO = 0 THEN RESULTADO$(X) = "X"
+IF RESULTADO = 1 THEN RESULTADO$(X) = "1"
+IF RESULTADO = 2 THEN RESULTADO$(X) = "2"
+IF RESULTADO = 10 THEN RESULTADO$(X) = "1X"
+IF RESULTADO = 12 THEN RESULTADO$(X) = "12"
+IF RESULTAD0 = 20 THEN RESULTADO$(X) = "X2"
+wait key
+NEXT X
+return
+
+
+Mostrar:
+cls
+Y=1
+for x=1 to 14
+set cursor 1,Y
+print partidos$(x)+" "+"Pronostico : "+resultado$(x)
+Y=Y+30
+next x
+return
+
+
+
+partidos:
+cls
+for x=1 to 14
+print "Partido "+str$(x)+" : ";
+input partidos$(x)
+next x
+return
+
